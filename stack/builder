@@ -86,7 +86,9 @@ cd $app_root
 if [[ -f Procfile ]]; then
   exec foreman start --procfile=Procfile "\$@"
 else
-  exec foreman start --procfile=.release "\$@"
+  IMAGE="\$1"
+  [[ "\$IMAGE" == "" ]] && IMAGE=web
+  ruby -e "require 'yaml';puts (YAML.load_file('.release')['default_process_types'] || {})['\$IMAGE']" | bash
 fi
 EOF
 chmod +x /start
