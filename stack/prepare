@@ -16,8 +16,6 @@ xargs apt-get install -y --force-yes < /build/packages.txt
 apt-get clean
 
 # Ruby buildpack system configuration
-update-alternatives --set ruby /usr/bin/ruby1.9.1
-update-alternatives --set gem /usr/bin/gem1.9.1
 gem install bundler
 
 #
@@ -42,11 +40,11 @@ cd /build/buildpacks
 cnt=0
 while read BUILDPACK
 do
-	[ "$BUILDPACK" == "" ] && continue
+	[[ "$BUILDPACK" == "" ]] && continue
 	BUILDPACK_DIR="$(printf %02i $cnt)_$(basename $BUILDPACK)"
 	git clone --depth=1 $BUILDPACK $BUILDPACK_DIR
     cnt=$((cnt+1))
-    if [ -e $BUILDPACK_DIR/Gemfile ]
+    if [[ -e $BUILDPACK_DIR/Gemfile ]]
     then
     	( cd $BUILDPACK_DIR && bundle install )
 	fi
