@@ -6,6 +6,7 @@ curl
 daemontools
 dnsutils
 ed
+freetds-dev
 git
 imagemagick
 iputils-tracepath
