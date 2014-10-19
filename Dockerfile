@@ -9,3 +9,6 @@ RUN sed -i 's|^;listen.mode = 0666|listen.mode = 0666|g' /build/buildpacks/*/con
 
 #fix php buildpack, source: https://github.com/drmikecrowe/dokku-buildpack-php/commit/00cf93c2f3a60e11f9d4e81a7c110977dbddee41
 RUN mkdir /root/bin
+
+ENV PORT 5000
+EXPOSE 5000
