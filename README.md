@@ -1,6 +1,6 @@
 # Buildstep
 
-Heroku-style application builds using Docker and Buildpacks. Used by [Dokku](https://github.com/progrium/dokku) to make a mini-Heroku.
+Heroku-style application builds using Docker and Buildpacks. Used by [Dokku](https://github.com/progrium/dokku) and [Dokku-alt](https://github.com/dokku-alt/dokku-alt) to make a mini-Heroku.
 
 ## Requirements
 
@@ -19,6 +19,7 @@ Buildpacks should generally just work, but many of them make assumptions about t
  * [PHP](https://github.com/heroku/heroku-buildpack-php.git)
  * [Clojure](https://github.com/heroku/heroku-buildpack-clojure.git)
  * [Go](https://github.com/kr/heroku-buildpack-go.git)
+ * [Erlang](https://github.com/heroku/heroku-buildpack-erlang.git)
  * [Dart](https://github.com/igrigorik/heroku-buildpack-dart.git)
 
 ## Building Buildstep
@@ -26,7 +27,7 @@ Buildpacks should generally just work, but many of them make assumptions about t
 The buildstep script uses a buildstep base container that needs to be built. It must be created before
 you can use the buildstep script. To create it, run:
 
-    $ make build
+    $ docker build -t buildstep .
 
 This will create a container called `progrium/buildstep` that contains all supported buildpacks and the
 builder script that will actually perform the build using the buildpacks.
